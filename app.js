@@ -38,15 +38,27 @@ var testModel = mongoose.model('Test', testSchema);
 
 var testRecord = new testModel(
   {
-      first_name: "John",
-      family_name: "Bull",
-      age: 45
+      first_name: "Billy",
+      family_name: "Jobs",
+      age: 85
   });
 
 testRecord.save(function (err) {
   if (err) { return next(err); }
   // Successful - redirect to new author record.
   console.log("Success");
+});
+
+// the last one is not presented in a list!
+testModel.find(function f(err, results){
+  if (err) {
+    console.log("FIND ERROR");
+    return;
+  }
+
+  for(var resul of results)
+    console.log(resul.id);
+
 });
 
 

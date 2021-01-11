@@ -15,7 +15,7 @@
     "express-validator": "^6.9.2",
     "http-errors": "~1.6.3",
     "moment": "^2.29.1",
-    "mongoose": "^5.11.8",
+    "mongoose": "^5.11.11",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
   },

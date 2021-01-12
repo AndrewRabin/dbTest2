@@ -1,3 +1,5 @@
+var  fs = require('fs');
+
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb+srv://dbAdmin:dbAdmin@cluster0.e1tui.mongodb.net/dbTest?retryWrites=true&w=majority';
 //var client = new MongoClient(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -15,6 +17,7 @@ var testSchema = new Schema(
         first_name: {type: String, required: true, max: 100},
         family_name: {type: String, required: true, max: 100},
         age: {type: Number},
+        img: {data: Buffer, contentType: String},
     }
 );
 
@@ -22,10 +25,25 @@ var testModel = mongoose.model('Test', testSchema);
 
 var testRecord = new testModel(
     {
-        first_name: "Willy",
-        family_name: "Wong",
+        first_name: "Robby",
+        family_name: "Kong",
         age: 85
   });
+
+var filePath = 'robot.jpg';
+if (fs.existsSync(filePath)) {
+    console.log('The path exists.');
+    testRecord.img.data = fs.readFileSync(filePath);
+    testRecord.img.contentType = 'img/jpg';
+}
+
+
+
+//   app.use(multer({ dest: './uploads/',
+//     rename: function (fieldname, filename) {
+//       return filename;
+//     },
+//    }));
 
 testRecord.save(function (err) {
     if (err) { return next(err); }
@@ -40,7 +58,7 @@ testModel.find(function f(err, results){
         return;
     }
 
-    for(var resul of results)
-    console.log(resul.id);
+    for(var res of results)
+    console.log(`${res.first_name} ${res.family_name} (${res.id})`);
 
 });

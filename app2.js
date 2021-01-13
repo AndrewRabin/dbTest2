@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 // Uploading the image
 app.post('/', upload.single('image'), (req, res, next) => {
  
-    var obj = {
+    var obj = { 
         name: req.body.name,
         desc: req.body.desc,
         img: {

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <img src="header.jpg" alt="stripe1">
+        
+        <h1><%=caption%></h1>
+
+        <%=items.length%>
+
+        <%items.forEach(function(image) {%>
+            <%console.log(image.name + ' ' + image.desc);%>
+            <p><strong><%=image.name%></strong> <%=image.desc%></p>
+            <img src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>">
+            <img src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>">
+
+        <%})%>
+    </body>

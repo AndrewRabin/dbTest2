@@ -35,6 +35,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 var imgModel = require('./model');
+const { render } = require('pug');
 
 // Retriving the image
 app.get('/', (req, res) => {
@@ -45,7 +46,7 @@ app.get('/', (req, res) => {
         else {
             res.render('app', { items: items });
         }
-    });
+    }).sort([['name', 'ascending']]);
 });
 
 // Uploading the image
@@ -68,6 +69,18 @@ app.post('/', upload.single('image'), (req, res, next) => {
             res.redirect('/');
         }
     });
+});
+
+app.use('/img', function(req, res){
+    imgModel.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render('img', {caption:'Image test', items: items });
+        }
+    }).sort([['name', 'ascending']]);
+    
 });
 
 app.listen('3000' || process.env.PORT, err => {

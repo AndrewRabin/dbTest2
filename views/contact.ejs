@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%=title %></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <h1><%=title %> в EJS</h1>
+
+    <h3><%=stam.concat(' ', title, ' ', stam)%></h3>
+    <h3><%=stam%></h3>
+
+    <% if(emailsVisible) {%>
+        <h3>Электронные адреса</h3>
+        <ul>
+            <% for(var i=0; i<emails.length;i++) {%>
+                <li><%=emails[i] %></li>
+            <%} %>
+        </ul>
+    <% }else {%>
+        <h3>Электронный адрес отсутствует</h3>
+    <%} %>
+    <p>Телефон: <%=phone %></p>
+</body>
+<html>
